@@ -12,7 +12,7 @@ app = FastAPI(
     title="Morsecode-Übersetzer",
     description="Übersetzt Text → Morsecode und Morsecode → Text. "
                 "Morsecode: Buchstaben mit Leerzeichen, Wörter mit ' / ' trennen.",
-    version="1.0.0",
+    version="1.1.0",
 )
 
 
@@ -29,7 +29,7 @@ class FreieEingabe(BaseModel):
     eingabe: str = Field(..., min_length=1, max_length=5000, examples=["Hallo Welt"])
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def status():
     """Einfacher Health-Check."""
     return {"status": "ok", "app": "Morsecode-Übersetzer", "doku": "/docs"}
